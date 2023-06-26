@@ -73,7 +73,10 @@ const Navbar = () => {
 							);
 						})}
 						<div>
-							<button className="mr-5 text-purple-500 hover:text-purple-700">
+							<button
+								onClick={() => navigate("createArticle")}
+								className="mr-5 text-purple-500 hover:text-purple-700"
+							>
 								<FontAwesomeIcon icon={faFeather} className="px-2" />
 								Write
 							</button>

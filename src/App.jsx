@@ -12,6 +12,7 @@ import ResetPassword from "./pages/resetPassword/resetPassword";
 import CreateArticleForm from "./pages/article/CreateArticle";
 import UserProfile from "./pages/profile/UserProfile";
 import DetailArticle from "./pages/article/DetailArticle";
+import CobaBlogId from "./pages/article/CobaBlogId";
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 				<Route path="/createArticle" element={<CreateArticleForm />} />
 				<Route path="/profile" element={<UserProfile />} />
 				{/* <Route path="/blog/:id" element={<DetailArticle  />} /> */}
+				<Route path="/blog/:id" element={<CobaBlogId />} />
 			</Routes>
 		</div>
 	);

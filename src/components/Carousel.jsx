@@ -10,7 +10,9 @@ import {
 import { useDispatch } from "react-redux";
 import { fetchBlogs } from "../features/blogSlice";
 import { useSelector } from "react-redux";
-
+import Blog from "../pages/article/CobaBlog";
+import { useNavigate } from "react-router-dom";
+import { fetchBlogId } from "../features/blogSlice";
 function SampleNextArrow(props) {
 	const { onClick } = props;
 	return (
@@ -36,17 +38,18 @@ function SamplePrevArrow(props) {
 }
 
 const Carousel = ({ data }) => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const blogs = useSelector((state) => state.blogs);
+	const blogs = useSelector((state) => state.blogs.blogs);
 
 	useEffect(() => {
 		dispatch(fetchBlogs());
 	});
 
 	const settings = {
-		dots: true,
+		dots: false,
 		infinite: true,
-		slidesToShow: 3,
+		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 3000,
@@ -81,12 +84,25 @@ const Carousel = ({ data }) => {
 			},
 		],
 	};
+
+	const handleClick = (blogId) => {
+		dispatch(fetchBlogId(blogId));
+		navigate(`/blog/${blogId}`);
+	};
+
 	return (
 		<div className="mb-16">
 			<Slider {...settings}>
 				{blogs.map((blog) => {
-					return <Card key={blog.id} data={blog} />;
+					return (
+						<Card
+							key={blog.id}
+							data={blog}
+							onClick={() => handleClick(blog.id)}
+						/>
+					);
 				})}
+				{/* <Blog /> */}
 			</Slider>
 		</div>
 	);

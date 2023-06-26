@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Card = ({ data, onClick }) => {
+const Card = ({ data, onClick, ifClick }) => {
 	const navigate = useNavigate();
 
 	return (
@@ -52,9 +52,9 @@ const Card = ({ data, onClick }) => {
 					{data.content}
 				</p>
 
-				<Link to={`/blog/${data.id}`} className="text-blue-500 hover:underline">
+				{/* <Link to={`/blog/${data.id}`} className="text-blue-500 hover:underline">
 					Read More
-				</Link>
+				</Link> */}
 				<button onClick={onClick} className="text-blue-500 hover:underline">
 					Read More
 				</button>

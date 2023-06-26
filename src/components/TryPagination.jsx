@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import DetailArticle from "../pages/article/DetailArticle";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectBlogs } from "../features/blogSlice";
 
 const API_URL = "https://minpro-blog.purwadhikabootcamp.com/api/blog";
 
 function TryPagination() {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	// const blogs = useSelector(selectBlogs);
 	const [blogs, setBlogs] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
@@ -24,17 +30,22 @@ function TryPagination() {
 		}
 	};
 
+	const handleClick = (blogId) => {
+		fetchBlogs(blogId);
+		navigate(`/blog/${blogId}`);
+	};
+
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};
 
-	const handleCardClick = (blogId) => {
-		setSelectedBlogId(blogId);
-	};
+	// const handleCardClick = (blogId) => {
+	// 	setSelectedBlogId(blogId);
+	// };
 
-	const handleBackToList = () => {
-		setSelectedBlogId(null);
-	};
+	// const handleBackToList = () => {
+	// 	setSelectedBlogId(null);
+	// };
 
 	const renderPageNumbers = () => {
 		const maxPageNumbers = 3;
@@ -76,23 +87,19 @@ function TryPagination() {
 		<div className="container mx-auto p-4">
 			<h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
 
-			{selectedBlogId ? (
-				<DetailArticle blogId={selectedBlogId} onClose={handleBackToList} />
-			) : (
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-					{blogs && blogs.length > 0 ? (
-						blogs.map((blog) => (
-							<Card
-								key={blog.id}
-								data={blog}
-								onClick={() => handleCardClick(blog.id)}
-							/>
-						))
-					) : (
-						<p>No blogs found.</p>
-					)}
-				</div>
-			)}
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+				{blogs && blogs.length > 0 ? (
+					blogs.map((blog) => (
+						<Card
+							key={blog.id}
+							data={blog}
+							onClick={() => handleClick(blog.id)}
+						/>
+					))
+				) : (
+					<p>No blogs found.</p>
+				)}
+			</div>
 
 			<div className="flex justify-center mt-4">
 				<button
