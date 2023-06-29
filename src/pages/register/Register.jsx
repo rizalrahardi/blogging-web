@@ -54,27 +54,13 @@ const RegistrationPage = () => {
 	const handleFormSubmit = async (values) => {
 		dispatch(registerUser(values));
 		console.log(values);
-		// const { username, email, phone, password, confirmPassword } = values;
-		// const res = await axios.post(
-		// 	"https://minpro-blog.purwadhikabootcamp.com/api/auth/",
-		// 	{
-		// 		username: username,
-		// 		email: email,
-		// 		phone: phone,
-		// 		password: password,
-		// 		confirmPassword: confirmPassword,
-		// 		FE_URL: "http://localhost:3000",
-		// 	}
-		// );
-
-		// console.log(res);
 	};
 
 	useEffect(() => {
 		if (isLogin) {
 			navigate("/");
 		}
-	}, [success, navigate]);
+	}, [success, navigate, isLogin]);
 
 	return (
 		<div className="min-h-screen flex items-center justify-center bg-gray-100">

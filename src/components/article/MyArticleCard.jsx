@@ -1,27 +1,23 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikeButton from "./article/LikeButton";
 import DeleteButton from "./article/DeleteButton";
 
-const Card = ({ data }) => {
+const MyArticleCard = ({ data }) => {
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const handleClick = (id) => {
 		navigate(`blog/${id}`);
 		window.location.reload();
 	};
 
-	const isMyArticlePage = location.pathname === "/my-article";
-
 	return (
 		<>
 			<div className="rounded-lg p-4 shadow-md hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out bg-white m-2">
 				<div className="relative truncate">
-					<h1 className="font-bold text-2xl mx-2 text-center">Hot News!</h1>
 					<img
-						className="object-cover object-center w-full h-96 rounded-lg lg:h-70"
+						className="object-cover object-center w-full h-52 rounded-lg lg:h-70"
 						src={`https://minpro-blog.purwadhikabootcamp.com/${data.imageURL}`}
 						alt={data.title}
 					/>
@@ -36,7 +32,7 @@ const Card = ({ data }) => {
 						) : (
 							<FontAwesomeIcon
 								icon={faUser}
-								className="text-blue-400 hover:text-blue-500 hover:cursor-pointer px-[5px] py-1 rounded-full border-4 border-double border-blue-500"
+								className="text-purple-400 hover:text-purple-500 hover:cursor-pointer px-[5px] py-1 rounded-full border-4 border-double border-purple-500"
 							/>
 						)}
 
@@ -64,13 +60,11 @@ const Card = ({ data }) => {
 				>
 					Read More
 				</button>
-				<div className="flex justify-between">
-					<LikeButton data={data} />
-					{isMyArticlePage && <DeleteButton blogId={data.id} />}
-				</div>
+				<LikeButton data={data} />
+				<DeleteButton blogId={data.id} />
 			</div>
 		</>
 	);
 };
 
-export default Card;
+export default MyArticleCard;

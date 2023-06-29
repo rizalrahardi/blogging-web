@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBlogs } from "../features/blogSlice";
 import Card from "./Card";
-const BlogList = ({ data }) => {
+const BlogList = () => {
 	const dispatch = useDispatch();
 	const blogs = useSelector((state) => state.blogs);
 

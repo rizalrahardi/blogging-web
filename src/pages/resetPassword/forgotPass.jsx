@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ForgotPasswordForm = () => {
 	const initialValues = {
@@ -19,9 +20,13 @@ const ForgotPasswordForm = () => {
 				}
 			);
 			console.log(response.data);
-			alert(response.data.message);
-			// window.location.href = "/login";
+
+			toast.success("Reset password success!");
+			setTimeout(() => {
+				window.location.href = "/login";
+			}, 2000);
 		} catch (error) {
+			toast.error(error.response.data);
 			console.error(error);
 		}
 	};
@@ -38,7 +43,7 @@ const ForgotPasswordForm = () => {
 				validationSchema={validationSchema}
 				onSubmit={handleSubmit}
 			>
-				<Form>
+				<Form className="w-1/4">
 					<div className="mb-4">
 						<label htmlFor="email" className="block font-medium mb-1">
 							Email:
@@ -55,13 +60,14 @@ const ForgotPasswordForm = () => {
 							className="text-red-500"
 						/>
 					</div>
-
-					<button
-						type="submit"
-						className="bg-blue-500 text-white py-2 px-4 rounded"
-					>
-						Reset Password
-					</button>
+					<div className="text-center">
+						<button
+							type="submit"
+							className="bg-blue-500 text-white py-2 px-4 rounded"
+						>
+							Reset Password
+						</button>
+					</div>
 				</Form>
 			</Formik>
 		</div>

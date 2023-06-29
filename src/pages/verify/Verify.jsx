@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Verify = () => {
 	const token = async () => {
@@ -17,14 +18,16 @@ const Verify = () => {
 				}
 			);
 			console.log(data);
-			alert("Your account has been verified");
-			window.location.href = "/login";
+			toast.success("Your account has been verified");
+			setTimeout(() => {
+				window.location.href = "/login";
+			}, 2000);
 		} catch (error) {
 			console.log(error.response.data);
 		}
 	};
 	return (
-		<div className="pt-20 text-center">
+		<div className="min-h-screen flex flex-col justify-center items-center text-center">
 			<div className="text-2xl mb-4">
 				<p>congratulations! your account has been created</p>
 				<p>

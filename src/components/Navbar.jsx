@@ -16,9 +16,9 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const navLinks = [
-		{ name: "Home", link: "/" },
-		{ name: "About", link: "/about" },
 		{ name: "My Article", link: "/my-article" },
+		{ name: "My Fav Article", link: "/liked-article" },
+		{ name: "Write", link: "/create-article" },
 	];
 
 	const toggleMenu = () => {
@@ -26,25 +26,25 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="bg-white fixed w-full top-0 z-50 py-2 border-b-2 border-purple-500 shadow-md">
+		<nav className="bg-white fixed w-full top-0 z-50 py-2 border-b-2 border-blue-500 shadow-md">
 			<div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between h-14">
 				<button
 					className="md:flex items-center hidden"
 					onClick={() => navigate("/")}
 				>
 					<img src={Logo} alt="logo" className="w-16 mr-4" />
-					<p className="text-2xl font-semibold text-purple-500">Newsy!</p>
+					<p className="text-2xl font-semibold text-blue-500">Newsy!</p>
 				</button>
-				<div className="pr-2 rounded-xl border-2  border-purple-500 flex items-center w-1/2 md:w-1/5">
+				<div className="pr-2 rounded-xl border-2  border-blue-500 flex items-center w-1/2 md:w-1/5">
 					<FontAwesomeIcon
 						icon={faMagnifyingGlass}
-						className="text-purple-500 px-2"
+						className="text-blue-500 px-2"
 						size="lg"
 					/>
 					<input
 						type="search"
 						placeholder="Search.."
-						className="px-3 text-purple-400 py-2 bg-opacity-50 w-full  focus:outline-none"
+						className="px-3 text-blue-400 py-2 bg-opacity-50 w-full  focus:outline-none"
 					/>
 				</div>
 				<div className="md:hidden">
@@ -62,30 +62,26 @@ const Navbar = () => {
 				<div className={`hidden md:block ${isOpen ? "block" : "hidden"}`}>
 					<div className="ml-4 flex items-center md:ml-6">
 						{navLinks.map((link, index) => {
-							return (
-								<button
-									onClick={() => navigate(link.link)}
-									key={index}
-									className="mr-5 text-purple-500  hover:text-purple-700"
-								>
-									{link.name}
-								</button>
-							);
+							if (isLogin) {
+								return (
+									<button
+										onClick={() => navigate(link.link)}
+										key={index}
+										className="mr-5 text-blue-500  hover:text-blue-700"
+									>
+										{link.name}
+									</button>
+								);
+							} else {
+								return null;
+							}
 						})}
-						<div>
-							<button
-								onClick={() => navigate("createArticle")}
-								className="mr-5 text-purple-500 hover:text-purple-700"
-							>
-								<FontAwesomeIcon icon={faFeather} className="px-2" />
-								Write
-							</button>
-						</div>
+
 						{isLogin ? (
 							<NavProfile />
 						) : (
 							<button
-								className="py-2 px-4 bg-purple-500 text-white rounded-lg hover:bg-purple-700"
+								className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
 								onClick={() => navigate("/login")}
 							>
 								Login
@@ -112,7 +108,7 @@ const Navbar = () => {
 					) : (
 						<button
 							onClick={() => navigate("/login")}
-							className="py-2 px-4 bg-purple-500 text-white rounded-lg hover:bg-purple-700"
+							className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
 						>
 							Login
 						</button>

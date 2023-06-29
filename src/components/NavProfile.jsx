@@ -25,7 +25,7 @@ const AvatarProfile = () => {
 		<>
 			<div
 				onMouseLeave={() => setIsOpen(false)}
-				className="relative w-16 h-16 rounded-full border-4 border-purple-400 border-double"
+				className="relative w-16 h-16 rounded-full border-4 border-blue-400 border-double"
 			>
 				<button
 					onClick={() => navigate("/Profile")}
@@ -40,27 +40,32 @@ const AvatarProfile = () => {
 					) : (
 						<FontAwesomeIcon
 							icon={faUser}
-							className="text-purple-400 hover:text-purple-500 hover:cursor-pointer "
+							className="text-blue-400 hover:text-blue-500 hover:cursor-pointer mt-5 ml-5"
 						/>
 					)}
 				</button>
 				<ul
-					className={`absolute top-15 -left-16 w-48 bg-white rounded-md shadow-lg p-4 ${
+					className={`absolute top-15 -left-16 max-w-lg bg-white rounded-md shadow-lg p-4 ${
 						isOpen ? "block" : "hidden"
 					}`}
 				>
 					{loading && <p>loading...</p>}
-					<li>
-						<FontAwesomeIcon icon={faUser} />
+					<li className="mb-3 flex items-center">
+						<FontAwesomeIcon icon={faUser} className="text-blue-500 mr-3" />
 						<p>{user ? user.username : "no user"}</p>
 					</li>
-					<li>
-						<FontAwesomeIcon icon={faMailBulk} />
+					<li className="mb-3 flex items-center">
+						<FontAwesomeIcon icon={faMailBulk} className="text-blue-500 mr-3" />
 						<p>{user ? user.email : "no user"}</p>
 					</li>
 
 					<li>
-						<button onClick={() => logout()}>logout</button>
+						<button
+							onClick={() => logout()}
+							className="text-red-500 border border-red-500 py-2 rounded-md hover:bg-red-500 hover:text-white w-full"
+						>
+							logout
+						</button>
 					</li>
 				</ul>
 			</div>

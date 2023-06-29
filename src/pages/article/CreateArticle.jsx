@@ -109,7 +109,9 @@ const CreateArticle = () => {
 						className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3"
 						encType="multipart/form-data"
 					>
-						<h1 className="text-2xl font-bold mb-6">Create Blog</h1>
+						<h1 className="text-2xl font-bold mb-6 text-center">
+							Create Your Blog
+						</h1>
 						<div className="mb-4">
 							<label
 								htmlFor="title"
@@ -244,7 +246,7 @@ const CreateArticle = () => {
 										<button
 											type="button"
 											onClick={() => push("")}
-											className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
+											className="mt-2 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
 										>
 											Add Keyword
 										</button>
@@ -263,9 +265,10 @@ const CreateArticle = () => {
 								htmlFor="file"
 								className="block text-gray-700 text-sm font-bold mb-2"
 							>
-								Gambar
+								Image
 							</label>
 							<input
+								className="mt-5 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
 								type="file"
 								id="file"
 								name="file"
@@ -286,7 +289,7 @@ const CreateArticle = () => {
 						<div className="flex items-center justify-start mt-5">
 							<button
 								type="submit"
-								className="bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+								className="bg-blue-500 hover:bg-blue-600 w-full text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
 							>
 								Create Blog
 							</button>

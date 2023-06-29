@@ -6,6 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../features/authSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -15,20 +16,20 @@ const Login = () => {
 	const failure = useSelector((state) => state.auth.error);
 
 	const initialValues = {
-		username: "",
+		// username: "",
 		email: "",
-		phone: "",
+		// phone: "",
 		password: "",
 	};
 
 	const validationSchema = Yup.object({
 		username: Yup.string()
 			.min(6, "Username must be at least 6 characters")
-			.notRequired("Username is required"),
-		email: Yup.string().email("Invalid email address").notRequired("Required"),
+			.notRequired(),
+		email: Yup.string().email("Invalid email address").notRequired(),
 		phone: Yup.number()
 			.min(10, "Phone number must be at least 10 characters")
-			.notRequired("Phone number is required"),
+			.notRequired(),
 		password: Yup.string()
 			.min(6, "Password must be at least 8 characters")
 			.matches(
@@ -75,12 +76,12 @@ const Login = () => {
 									</div>
 								)}
 							</div>
-							<div className="mb-4">
+							{/* <div className="mb-4">
 								<label htmlFor="username">Username</label>
 								<Field
 									type="text"
-									id="username"
-									name="username"
+									id="username email phone"
+									name="username email phone"
 									className="block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
 								/>
 								<ErrorMessage
@@ -88,7 +89,7 @@ const Login = () => {
 									component="p"
 									className="text-red-500"
 								/>
-							</div>
+							</div> */}
 							<div className="mb-4">
 								<label htmlFor="email">Email</label>
 								<Field
@@ -103,7 +104,7 @@ const Login = () => {
 									className="text-red-500"
 								/>
 							</div>
-							<div className="mb-4">
+							{/* <div className="mb-4">
 								<label htmlFor="phone">Phone</label>
 								<Field
 									type="number"
@@ -116,7 +117,7 @@ const Login = () => {
 									component="p"
 									className="text-red-500"
 								/>
-							</div>
+							</div> */}
 							<div className="mb-4">
 								<label htmlFor="password">Password</label>
 								<div className="flex">

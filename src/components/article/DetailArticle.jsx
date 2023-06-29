@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchBlogId } from "../../features/blogSlice";
+import LikeButton from "./LikeButton";
 const DetailArticle = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const DetailArticle = () => {
 				/>
 				<h2 className="text-3xl font-semibold mb-5">{blog.title}</h2>
 				<p>{blog.content}</p>
+				<LikeButton data={blog} />
 			</div>
 		</div>
 	);

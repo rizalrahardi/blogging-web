@@ -97,6 +97,7 @@ const BlogList = () => {
 					</button>
 					{categories.map((category) => (
 						<FilterCategory
+							key={category.id}
 							data={category}
 							selectedCategoryId={selectedCategoryId}
 							onClick={() => handleCategoryClick(category.id)}

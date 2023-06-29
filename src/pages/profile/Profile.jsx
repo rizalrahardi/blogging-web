@@ -80,7 +80,12 @@ const Profile = () => {
 					{ headers }
 				);
 
-				toast.success("Foto berhasil diubah");
+				toast.success("Foto berhasil diubah", {
+					autoClose: 1500,
+				});
+				setTimeout(() => {
+					window.location.reload();
+				}, 1500);
 			}
 
 			if (values.username && values.username !== "") {
@@ -151,7 +156,7 @@ const Profile = () => {
 	return (
 		<div className="max-w-lg flex flex-col justify-center items-center min-h-screen mx-auto">
 			<div className="shadow-md rounded-lg p-20">
-				<h1 className="text-2xl font-bold mb-4 text-center">Change Profile</h1>
+				<h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
 
 				<ToastContainer />
 
@@ -166,7 +171,7 @@ const Profile = () => {
 								<img
 									src={`https://minpro-blog.purwadhikabootcamp.com/${profileData.imgProfile}`}
 									alt={profileData.username}
-									className="h-28 w-28 border-2 border-violet-700 rounded-full object-cover mx-auto"
+									className="h-28 w-28 border-2 border-blue-700 rounded-full object-cover mx-auto"
 								/>
 
 								<input
@@ -177,7 +182,7 @@ const Profile = () => {
 									onChange={(event) => {
 										setFieldValue("file", event.currentTarget.files[0]);
 									}}
-									className="mt-4"
+									className="mt-5 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
 								/>
 								<ErrorMessage
 									name="file"
@@ -240,18 +245,9 @@ const Profile = () => {
 								/>
 							</div>
 
-							<p className="text-gray-500">
-								<Link
-									to="/change-password"
-									className="font-bold text-gray-600 hover:text-gray-700"
-								>
-									Change Password
-								</Link>
-							</p>
-
 							<button
 								type="submit"
-								className={`bg-slate-700 text-white px-4 py-2 mt-4 rounded hover:bg-slate-800 ${
+								className={`bg-blue-500 text-white w-full py-2 mt-4 rounded-md mb-5 hover:bg-blue-600 ${
 									!values.username &&
 									!values.email &&
 									!values.phone &&
@@ -267,6 +263,12 @@ const Profile = () => {
 								}
 							>
 								Change Profile
+							</button>
+							<button
+								onClick={() => navigate("/change-password")}
+								className=" text-blue-500 py-2 w-full border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white"
+							>
+								Change Password
 							</button>
 						</Form>
 					)}
