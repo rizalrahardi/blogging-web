@@ -1,29 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Card = ({ data, onClick, ifClick }) => {
+const Card = ({ data }) => {
 	const navigate = useNavigate();
+
+	const handleClick = (id) => {
+		navigate(`blog/${id}`);
+		window.location.reload();
+	};
 
 	return (
 		<>
 			<div className="rounded-lg p-4 shadow-md hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out bg-white m-2">
-				<div className="relative">
+				<div className="relative truncate">
 					<img
 						className="object-cover object-center w-full h-52 rounded-lg lg:h-70"
 						src={`https://minpro-blog.purwadhikabootcamp.com/${data.imageURL}`}
 						alt={data.title}
 					/>
 
-					<div className="absolute bottom-0 flex p-3 bg-white rounded-tr-lg">
+					<div className="absolute w-36 bottom-0 flex p-3 bg-white rounded-tr-lg">
 						{data.User.imgProfile ? (
 							<img
 								className="object-cover object-center w-10 h-10 rounded-full"
-								src={
-									data.User.imgProfile
-										? `https://minpro-blog.purwadhikabootcamp.com/${data.User?.imgProfile}`
-										: "gada"
-								}
+								src={`https://minpro-blog.purwadhikabootcamp.com/${data.User?.imgProfile}`}
 								alt="profile"
 							/>
 						) : (
@@ -33,8 +34,8 @@ const Card = ({ data, onClick, ifClick }) => {
 							/>
 						)}
 
-						<div className="mx-4 capitalize">
-							<h1 className="text-sm text-gray-700 dark:text-gray-200">
+						<div className="mx-4 truncate capitalize">
+							<h1 className="truncate text-sm text-gray-700 dark:text-gray-200">
 								{data.User.username}
 							</h1>
 							<p className="text-sm text-gray-500 dark:text-gray-400">
@@ -44,18 +45,17 @@ const Card = ({ data, onClick, ifClick }) => {
 					</div>
 				</div>
 
-				<h1 className="mt-6 font-semibold text-gray-800 dark:text-white h-14">
+				<h1 className="truncate mt-6 font-semibold text-gray-800 dark:text-white h-14">
 					{data.title}
 				</h1>
 
 				<p className="text-sm text-gray-500 dark:text-gray-400 truncate">
 					{data.content}
 				</p>
-
-				{/* <Link to={`/blog/${data.id}`} className="text-blue-500 hover:underline">
-					Read More
-				</Link> */}
-				<button onClick={onClick} className="text-blue-500 hover:underline">
+				<button
+					onClick={() => handleClick(data.id)}
+					className="text-blue-500 hover:underline"
+				>
 					Read More
 				</button>
 			</div>

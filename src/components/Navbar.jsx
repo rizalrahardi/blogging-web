@@ -18,7 +18,7 @@ const Navbar = () => {
 	const navLinks = [
 		{ name: "Home", link: "/" },
 		{ name: "About", link: "/about" },
-		{ name: "Article", link: "/article" },
+		{ name: "My Article", link: "/my-article" },
 	];
 
 	const toggleMenu = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
 
 	return (
 		<nav className="bg-white fixed w-full top-0 z-50 py-2 border-b-2 border-purple-500 shadow-md">
-			<div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between h-16">
+			<div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between h-14">
 				<button
 					className="md:flex items-center hidden"
 					onClick={() => navigate("/")}
@@ -63,13 +63,13 @@ const Navbar = () => {
 					<div className="ml-4 flex items-center md:ml-6">
 						{navLinks.map((link, index) => {
 							return (
-								<a
-									href={link.link}
+								<button
+									onClick={() => navigate(link.link)}
 									key={index}
 									className="mr-5 text-purple-500  hover:text-purple-700"
 								>
 									{link.name}
-								</a>
+								</button>
 							);
 						})}
 						<div>

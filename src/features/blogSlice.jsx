@@ -1,43 +1,53 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+const BASE_URL = "https://minpro-blog.purwadhikabootcamp.com/api/blog";
 
 export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async () => {
-	const response = await axios.get(
-		"https://minpro-blog.purwadhikabootcamp.com/api/blog"
-	);
+	const response = await axios.get(`${BASE_URL}/?size=10`);
 	return response.data.result;
 });
 
-export const fetchBlogId = createAsyncThunk(
-	"blogs/fetchBlogId",
-	async (blogId) => {
+export const fetchCategories = createAsyncThunk(
+	"blogs/fetchCategories",
+	async () => {
 		try {
-			const response = await axios.get(
-				`https://minpro-blog.purwadhikabootcamp.com/api/blog/${blogId}`
-			);
-			for (let i = 0; i < response.data.length; i++) {
-				if (response.data[i].id === blogId) {
-					console.log(response.data[i]);
-					return response.data[i];
-				}
-			}
+			const response = await axios.get(`${BASE_URL}/allCategory?size=10`);
+			return response.data;
 		} catch (error) {
 			console.log(error);
 		}
 	}
 );
 
+export const fetchBlogId = createAsyncThunk("blogs/fetchBlogId", async (id) => {
+	try {
+		// const params = useParams();
+		const response = await axios.get(`${BASE_URL}/${id}`);
+		console.log(response.data[0]);
+		return response.data[0];
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 const blogSlice = createSlice({
 	name: "blogs",
 	initialState: {
+		blog: [],
+		blogId: [],
 		blogs: [],
-		selectedBlog: null,
+		categories: [],
 		status: "idle",
 		error: null,
+		totalPages: 0,
 	},
 	reducers: {
-		setSelectedBlog: (state, action) => {
-			state.selectedBlog = action.payload;
+		setBlogs: (state, action) => {
+			state.blog = action.payload;
+		},
+		setTotalPages: (state, action) => {
+			state.totalPages = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -53,12 +63,23 @@ const blogSlice = createSlice({
 				state.status = "failed";
 				state.error = action.error.message;
 			})
+			.addCase(fetchCategories.pending, (state) => {
+				state.status = "loading";
+			})
+			.addCase(fetchCategories.fulfilled, (state, action) => {
+				state.status = "succeeded";
+				state.categories = action.payload;
+			})
+			.addCase(fetchCategories.rejected, (state, action) => {
+				state.status = "failed";
+				state.error = action.error.message;
+			})
 			.addCase(fetchBlogId.pending, (state) => {
 				state.status = "loading";
 			})
 			.addCase(fetchBlogId.fulfilled, (state, action) => {
 				state.status = "succeeded";
-				state.selectedBlog = action.payload;
+				state.blogId = action.payload;
 			})
 			.addCase(fetchBlogId.rejected, (state, action) => {
 				state.status = "failed";
@@ -67,9 +88,7 @@ const blogSlice = createSlice({
 	},
 });
 
-export const { setSelectedBlog } = blogSlice.actions;
-
+export const { setBlogs, setTotalPages } = blogSlice.actions;
 export const selectBlogs = (state) => state.blogs.blogs;
-export const selectSelectedBlog = (state) => state.blogs.selectedBlog;
-
+export const categoriesBlogs = (state) => state.blogs.categories;
 export default blogSlice.reducer;

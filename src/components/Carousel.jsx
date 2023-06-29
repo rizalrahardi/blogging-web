@@ -10,9 +10,9 @@ import {
 import { useDispatch } from "react-redux";
 import { fetchBlogs } from "../features/blogSlice";
 import { useSelector } from "react-redux";
-import Blog from "../pages/article/CobaBlog";
+// import Blog from "../pages/article/CobaBlog";
 import { useNavigate } from "react-router-dom";
-import { fetchBlogId } from "../features/blogSlice";
+// import { fetchBlogId } from "../features/blogSlice";
 function SampleNextArrow(props) {
 	const { onClick } = props;
 	return (
@@ -86,7 +86,7 @@ const Carousel = ({ data }) => {
 	};
 
 	const handleClick = (blogId) => {
-		dispatch(fetchBlogId(blogId));
+		// dispatch(fetchBlogId(blogId));
 		navigate(`/blog/${blogId}`);
 	};
 

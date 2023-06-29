@@ -6,19 +6,23 @@ import axios from "axios";
 const ForgotPasswordForm = () => {
 	const initialValues = {
 		email: "",
-		FE_URL: "https://localhost:3000",
+		FE_URL: "http://localhost:3000",
 	};
-	const handleSubmit = async (values, { setSubmitting }) => {
+	const handleSubmit = async (values) => {
 		try {
+			const { email } = values;
 			const response = await axios.put(
 				"https://minpro-blog.purwadhikabootcamp.com/api/auth/forgotPass",
-				values
+				{
+					email: email,
+					FE_URL: "http://localhost:3000",
+				}
 			);
 			console.log(response.data);
+			alert(response.data.message);
+			// window.location.href = "/login";
 		} catch (error) {
 			console.error(error);
-		} finally {
-			setSubmitting(false);
 		}
 	};
 

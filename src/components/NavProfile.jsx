@@ -10,7 +10,7 @@ const AvatarProfile = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { user, loading, error } = useSelector((state) => state.user);
+	const { user, loading } = useSelector((state) => state.user);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -25,17 +25,24 @@ const AvatarProfile = () => {
 		<>
 			<div
 				onMouseLeave={() => setIsOpen(false)}
-				className="relative py-3 px-4 rounded-full border-4 border-purple-400 border-double"
+				className="relative w-16 h-16 rounded-full border-4 border-purple-400 border-double"
 			>
 				<button
 					onClick={() => navigate("/Profile")}
 					onMouseOver={() => setIsOpen(true)}
 				>
-					<FontAwesomeIcon
-						icon={faUser}
-						size="2x"
-						className="text-purple-400 hover:text-purple-500 hover:cursor-pointer"
-					/>
+					{user?.imgProfile ? (
+						<img
+							className="mx-auto object-cover rounded-full"
+							src={`https://minpro-blog.purwadhikabootcamp.com/${user?.imgProfile}`}
+							alt="profile"
+						/>
+					) : (
+						<FontAwesomeIcon
+							icon={faUser}
+							className="text-purple-400 hover:text-purple-500 hover:cursor-pointer "
+						/>
+					)}
 				</button>
 				<ul
 					className={`absolute top-15 -left-16 w-48 bg-white rounded-md shadow-lg p-4 ${

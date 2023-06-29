@@ -2,19 +2,27 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
+import ChangePassword from "./ChangePassword";
+import ChangeEmail from "./ChangeEmail";
+import ChangePhone from "./ChangePhone";
+import ChangePhoto from "./ChangePhoto";
+import ChangeUsername from "./ChangeUsername";
 const ProfilePage = () => {
 	const dispatch = useDispatch();
-	const { user, loading, error } = useSelector((state) => state.user);
-
+	const { user } = useSelector((state) => state.user);
+	const navigate = useNavigate();
+	const [active, setActive] = useState(null);
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		dispatch(fetchUser(token));
 	}, [dispatch]);
 
+	const handleChangeComponent = (active) => {
+		setActive(active);
+	};
 	return (
 		<>
 			{user ? (
@@ -39,6 +47,39 @@ const ProfilePage = () => {
 							</div>
 							<h2 className="text-xl font-semibold">{user.username}</h2>
 							<p className="text-gray-600">{user.email}</p>
+
+							<div className="flex flex-col">
+								<button
+									className="bg-purple-500 text-white rounded-md w-52 py-2 my-1"
+									onClick={() => handleChangeComponent("ChangePassword")}
+								>
+									Change Password
+								</button>
+								<button
+									className="bg-purple-500 text-white rounded-md w-52 py-2 my-1"
+									onClick={() => handleChangeComponent("ChangeEmail")}
+								>
+									Change Email
+								</button>
+								<button
+									className="bg-purple-500 text-white rounded-md w-52 py-2 my-1"
+									onClick={() => handleChangeComponent("ChangePhone")}
+								>
+									Change Phone
+								</button>
+								<button
+									className="bg-purple-500 text-white rounded-md w-52 py-2 my-1"
+									onClick={() => handleChangeComponent("ChangeUsername")}
+								>
+									Change Usename
+								</button>
+								<button
+									className="bg-purple-500 text-white rounded-md w-52 py-2 my-1"
+									onClick={() => handleChangeComponent("ChangePhoto")}
+								>
+									Change Photo
+								</button>
+							</div>
 						</div>
 					</div>
 					{/* Profile detail */}
@@ -63,9 +104,20 @@ const ProfilePage = () => {
 										/>
 									)}
 								</div>
+								{/* profil konten */}
+
 								<div className="col-span-2">
-									<h2 className="text-xl font-semibold">{user.username}</h2>
-									<p className="text-gray-600">{user.email}</p>
+									{active === "ChangePassword" && <ChangePassword />}
+									{active === "ChangeEmail" && <ChangeEmail />}
+									{active === "ChangePhone" && <ChangePhone />}
+									{active === "ChangeUsername" && <ChangeUsername />}
+									{active === "ChangePhoto" && <ChangePhoto />}
+									{active === null && (
+										<div>
+											<h2 className="text-xl font-semibold">{user.username}</h2>
+											<p className="text-gray-600">{user.email}</p>
+										</div>
+									)}
 								</div>
 							</div>
 						</div>

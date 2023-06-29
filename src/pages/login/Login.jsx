@@ -13,7 +13,7 @@ const Login = () => {
 	const loading = useSelector((state) => state.auth.loading);
 	const success = useSelector((state) => state.auth.login);
 	const failure = useSelector((state) => state.auth.error);
-	
+
 	const initialValues = {
 		username: "",
 		email: "",
@@ -30,7 +30,7 @@ const Login = () => {
 			.min(10, "Phone number must be at least 10 characters")
 			.notRequired("Phone number is required"),
 		password: Yup.string()
-			.min(8, "Password must be at least 8 characters")
+			.min(6, "Password must be at least 8 characters")
 			.matches(
 				/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
 				"Password must include at least one uppercase letter, one number, and one symbol"
@@ -149,11 +149,19 @@ const Login = () => {
 								>
 									{loading ? "Logging in..." : "Login"}
 								</button>
+								<br />
 								<button
 									className="text-blue-500"
 									onClick={() => navigate("/register")}
 								>
 									Don't have an account? Click here
+								</button>
+								<br />
+								<button
+									className="text-blue-500"
+									onClick={() => navigate("/forgotPassword")}
+								>
+									Forgot password?
 								</button>
 							</div>
 						</Form>
