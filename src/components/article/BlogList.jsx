@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import classNames from "classnames";
-import Card from "../Card";
+import Card from "./Card";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	fetchCategories,

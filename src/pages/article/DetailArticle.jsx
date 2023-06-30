@@ -1,40 +1,31 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-const API_URL = "https://minpro-blog.purwadhikabootcamp.com/api/blog";
-
-function DetailArticle({ blogId, onClose }) {
-	const [blog, setBlog] = useState(null);
-
-	const fetchBlog = async () => {
-		try {
-			const response = await axios.get(`${API_URL}/${blogId}`);
-            for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].id === blogId) {
-                    setBlog(response.data[i]);
-                }
-			console.log(response.data);
-            }
-		} catch (error) {
-			console.log(error);
-		}
-	};
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchBlogId } from "../../features/blogSlice";
+import LikeButton from "../../components/article/LikeButton";
+const DetailArticle = () => {
+	const { id } = useParams();
+	const dispatch = useDispatch();
+	const blog = useSelector((state) => state.blogs.blogId);
 
 	useEffect(() => {
-		fetchBlog();
-	}, []);
-
-	if (!blog) {
-		return <p>Loading...</p>;
-	}
-
+		dispatch(fetchBlogId(id));
+	}, [dispatch, id]);
+	console.log(blog);
 	return (
-		<div className="pt-[200px]">
-			<h2 className="text-lg font-bold mb-2">{blog.title}</h2>
-			<p>{blog.content}</p>
-			<button onClick={onClose}>Back to List</button>
+		<div className="flex flex-col min-h-screen justify-center items-center mx-auto w-full max-w-5xl">
+			<div className="shadow-md p-10 rounded-2xl">
+				<img
+					className="rounded-3xl mb-5 w-full"
+					src={`https://minpro-blog.purwadhikabootcamp.com/${blog.imageURL}`}
+					alt="article"
+				/>
+				<h2 className="text-3xl font-semibold mb-5">{blog.title}</h2>
+				<p>{blog.content}</p>
+				<LikeButton data={blog} />
+			</div>
 		</div>
 	);
-}
+};
 
 export default DetailArticle;

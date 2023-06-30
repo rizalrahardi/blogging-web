@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Card from "../../components/Card";
+import Card from "../../components/article/Card";
 
 const MyArticle = () => {
 	const navigate = useNavigate();

@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/profile/Profile";
 import ChangePass from "./pages/profile/ChangePass";
 import MyArticle from "./pages/article/MyArtile";
-import DetailArticle from "./components/article/DetailArticle";
+import DetailArticle from "./pages/article/DetailArticle";
 import LikedArticle from "./pages/article/LikedArticle";
 import Footer from "./components/Footer";
 function App() {
@@ -29,9 +29,7 @@ function App() {
 				<Route path="/reset-password/:token" element={<ResetPassword />} />
 				<Route path="/create-article" element={<CreateArticle />} />
 				<Route path="/blog/:id" element={<DetailArticle />} />
-				{/* <Route path="/profile" element={<UserProfile />} /> */}
 				<Route path="/profile" element={<Profile />} />
-				{/* <Route path="/profile/change-password" element={<ChangePassword />} /> */}
 				<Route path="/verification-change-email/:token" element={<Verify />} />
 				<Route path="/change-password" element={<ChangePass />} />
 				<Route path="/my-article" element={<MyArticle />} />

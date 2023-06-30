@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import Carousel from "../../components/Carousel";
-import Popular from "../../components/Popular";
+import Popular from "../../components/home/Popular";
 import BlogList from "../../components/article/BlogList";
 const Home = () => {
 	return (

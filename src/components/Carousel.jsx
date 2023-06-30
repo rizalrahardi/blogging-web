@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Slider from "react-slick";
 import { useEffect } from "react";
-import Card from "./Card";
+import Card from "./article/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faChevronLeft,

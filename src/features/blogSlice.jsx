@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 const BASE_URL = "https://minpro-blog.purwadhikabootcamp.com/api/blog";
 
 export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async () => {
@@ -22,7 +21,6 @@ export const fetchCategories = createAsyncThunk(
 
 export const fetchBlogId = createAsyncThunk("blogs/fetchBlogId", async (id) => {
 	try {
-		// const params = useParams();
 		const response = await axios.get(`${BASE_URL}/${id}`);
 		console.log(response.data[0]);
 		return response.data[0];

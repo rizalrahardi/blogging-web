@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import LikeButton from "../../components/article/LikeButton";
-
 const LikedArticle = () => {
 	const [likedArticles, setLikedArticles] = useState([]);
 
