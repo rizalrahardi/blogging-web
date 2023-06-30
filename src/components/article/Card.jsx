@@ -19,7 +19,6 @@ const Card = ({ data }) => {
 		<>
 			<div className="rounded-lg p-4 shadow-md hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out bg-white m-2">
 				<div className="relative truncate">
-					<h1 className="font-bold text-2xl mx-2 text-center">Hot News!</h1>
 					<img
 						className="object-cover object-center w-full h-96 rounded-lg lg:h-70"
 						src={`https://minpro-blog.purwadhikabootcamp.com/${data.imageURL}`}
