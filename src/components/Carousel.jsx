@@ -17,7 +17,7 @@ function SampleNextArrow(props) {
 	const { onClick } = props;
 	return (
 		<button
-			className="absolute right-0 top-1/2 w-8 h-8 rounded-full bg-gray-500 text-white focus:outline-none"
+			className="absolute right-0 top-1/2 w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white focus:outline-none"
 			onClick={onClick}
 		>
 			<FontAwesomeIcon icon={faChevronRight} />
@@ -29,7 +29,7 @@ function SamplePrevArrow(props) {
 	const { onClick } = props;
 	return (
 		<button
-			className="absolute left-0 top-1/2 w-8 h-8 rounded-full bg-gray-500 text-white focus:outline-none z-10"
+			className="absolute left-0 top-1/2 w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white focus:outline-none z-10"
 			onClick={onClick}
 		>
 			<FontAwesomeIcon icon={faChevronLeft} />
