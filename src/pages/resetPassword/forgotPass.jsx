@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 const ForgotPasswordForm = () => {
 	const initialValues = {
 		email: "",
-		FE_URL: "http://localhost:3000",
 	};
 	const handleSubmit = async (values) => {
 		try {
@@ -16,7 +15,7 @@ const ForgotPasswordForm = () => {
 				"https://minpro-blog.purwadhikabootcamp.com/api/auth/forgotPass",
 				{
 					email: email,
-					FE_URL: "http://localhost:3000",
+					FE_URL: window.location.origin,
 				}
 			);
 			console.log(response.data);
