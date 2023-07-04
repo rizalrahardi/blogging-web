@@ -11,7 +11,7 @@ export const fetchCategories = createAsyncThunk(
 	"blogs/fetchCategories",
 	async () => {
 		try {
-			const response = await axios.get(`${BASE_URL}/allCategory?size=10`);
+			const response = await axios.get(`${BASE_URL}/allCategory`);
 			return response.data;
 		} catch (error) {
 			console.log(error);

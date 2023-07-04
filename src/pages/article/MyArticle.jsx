@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../../components/article/Card";
 
 const MyArticle = () => {
-	const navigate = useNavigate();
-
 	const token = localStorage.getItem("token");
 
 	const [blog, setBlog] = useState([]);
@@ -24,12 +21,6 @@ const MyArticle = () => {
 		} catch (err) {
 			console.log(err.response.data);
 		}
-	};
-
-	const handleClick = (id) => {
-		navigate.push(`/`);
-		// navigate.push(`detailPage/${id}`);
-		window.location.reload();
 	};
 
 	useEffect(() => {

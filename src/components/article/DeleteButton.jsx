@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DeleteButton = ({ blogId }) => {
 	// const { blogId } = useParams();
@@ -17,10 +18,10 @@ const DeleteButton = ({ blogId }) => {
 				{},
 				{ headers }
 			);
-
+			toast.success("Blog with id " + blogId + " removed successfully");
 			setTimeout(() => {
 				window.location.href = "/my-article";
-			}, 2000);
+			}, 1500);
 
 			console.log(`Blog with id ${blogId} removed successfully`);
 		} catch (error) {
@@ -31,7 +32,7 @@ const DeleteButton = ({ blogId }) => {
 	return (
 		<div>
 			<button
-				className="bg-red-500 text-white font-bold py-2 px-4 rounded"
+				className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg"
 				onClick={() => removeBlog()}
 			>
 				Remove

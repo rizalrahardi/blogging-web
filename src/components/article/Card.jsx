@@ -1,12 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faUser, faWarning } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
+import { Button, Modal } from "flowbite-react";
+import { useState } from "react";
 
 const Card = ({ data }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [openModal, setOpenModal] = useState();
+	const props = { openModal, setOpenModal };
 
 	const handleClick = (id) => {
 		navigate(`blog/${id}`);
@@ -63,9 +67,51 @@ const Card = ({ data }) => {
 				>
 					Read More
 				</button>
-				<div className="flex justify-between">
+				<div className="flex justify-between items-center">
 					<LikeButton data={data} />
-					{isMyArticlePage && <DeleteButton blogId={data.id} />}
+					{isMyArticlePage && (
+						<div>
+							<Button
+								className="bg-red-600 hover:bg-red-700"
+								onClick={() => props.setOpenModal("pop-up")}
+							>
+								<FontAwesomeIcon icon={faTrash} className="mr-3" />
+								Delete
+							</Button>
+							<Modal
+								show={props.openModal === "pop-up"}
+								size="md"
+								popup
+								onClose={() => props.setOpenModal(undefined)}
+							>
+								<Modal.Header />
+								<Modal.Body>
+									<div className="text-center">
+										<FontAwesomeIcon
+											icon={faWarning}
+											className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200"
+										/>
+										<h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+											Are you sure you want to delete this blog?
+										</h3>
+										<div className="flex justify-center gap-4">
+											<DeleteButton
+												blogId={data.id}
+											>
+												Yes, I'm sure
+											</DeleteButton>
+											<Button
+												color="gray"
+												onClick={() => props.setOpenModal(undefined)}
+											>
+												No, cancel
+											</Button>
+										</div>
+									</div>
+								</Modal.Body>
+							</Modal>
+						</div>
+					)}
 				</div>
 			</div>
 		</>

@@ -84,7 +84,7 @@ const BlogList = () => {
 
 	return (
 		<div className="text-center">
-			<div className="sticky top-20 p-1 rounded-lg z-50 bg-white shadow-lg">
+			<div className="sticky top-20 p-1 rounded-lg z-30 bg-white shadow-lg">
 				<div className="flex my-4 justify-center">
 					<button
 						className={classNames("mr-2 px-4 py-2 rounded-md", {

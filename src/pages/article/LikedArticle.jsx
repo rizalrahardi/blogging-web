@@ -12,7 +12,7 @@ const LikedArticle = () => {
 				};
 
 				const response = await axios.get(
-					"https://minpro-blog.purwadhikabootcamp.com/api/blog/pagLike",
+					"https://minpro-blog.purwadhikabootcamp.com/api/blog/pagLike?&size=100",
 					{ headers }
 				);
 

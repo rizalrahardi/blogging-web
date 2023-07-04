@@ -25,7 +25,7 @@ const AvatarProfile = () => {
 		<>
 			<div
 				onMouseLeave={() => setIsOpen(false)}
-				className="relative w-16 h-16 rounded-full border-4 border-blue-400 border-double"
+				className="relative w-16 h-16 rounded-full border-4 border-blue-400 border-double sm:text-center"
 			>
 				<button
 					onClick={() => navigate("/Profile")}
@@ -40,7 +40,7 @@ const AvatarProfile = () => {
 					) : (
 						<FontAwesomeIcon
 							icon={faUser}
-							className="text-blue-400 hover:text-blue-500 hover:cursor-pointer mt-5 ml-5"
+							className="text-blue-400 hover:text-blue-500 hover:cursor-pointer mt-4"
 						/>
 					)}
 				</button>

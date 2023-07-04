@@ -23,21 +23,21 @@ export const FilterSort = ({ sortOrder, asc, desc }) => {
 			<div className="flex my-4 justify-center">
 				<button
 					className={classNames("mr-2 px-4 py-2 rounded-md", {
-						"bg-blue-500 text-white": sortOrder === "ASC",
-						"bg-gray-200 text-gray-700": sortOrder === "DESC",
-					})}
-					onClick={asc}
-				>
-					Ascending
-				</button>
-				<button
-					className={classNames("mr-2 px-4 py-2 rounded-md", {
 						"bg-blue-500 text-white": sortOrder === "DESC",
 						"bg-gray-200 text-gray-700": sortOrder === "ASC",
 					})}
 					onClick={desc}
 				>
-					Descending
+					Latest
+				</button>
+				<button
+					className={classNames("mr-2 px-4 py-2 rounded-md", {
+						"bg-blue-500 text-white": sortOrder === "ASC",
+						"bg-gray-200 text-gray-700": sortOrder === "DESC",
+					})}
+					onClick={asc}
+				>
+					Oldest
 				</button>
 			</div>
 		</>

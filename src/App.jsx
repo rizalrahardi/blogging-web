@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/profile/Profile";
 import ChangePass from "./pages/profile/ChangePass";
-import MyArticle from "./pages/article/MyArtile";
+import MyArticle from "./pages/article/MyArticle";
 import DetailArticle from "./pages/article/DetailArticle";
 import LikedArticle from "./pages/article/LikedArticle";
 import Footer from "./components/Footer";

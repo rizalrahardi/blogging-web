@@ -36,6 +36,7 @@ const LikeButton = ({ data }) => {
 		};
 
 		fetchLikeStatus();
+		// console.log(fetchLikeStatus());
 	}, [data.id]);
 
 	const handleLike = async () => {
@@ -49,10 +50,9 @@ const LikeButton = ({ data }) => {
 
 			if (liked) {
 				await axios.delete(
-					`https://minpro-blog.purwadhikabootcamp.com/api/blog/unlike/${data.id}`,
-					{
-						headers,
-					}
+					`https://minpro-blog.purwadhikabootcamp.com/api/blog/unlike`,
+					{ BlogId: data.id },
+					{ headers }
 				);
 				setLiked(false);
 				setDisliked(false);
@@ -66,7 +66,7 @@ const LikeButton = ({ data }) => {
 				setDisliked(false);
 			}
 		} catch (error) {
-			console.error("Error toggling like/dislike", error);
+			console.error("Error toggling like/dislike", error.response.data);
 		}
 	};
 

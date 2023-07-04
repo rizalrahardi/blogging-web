@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
 	const [profileData, setProfileData] = useState({});
@@ -168,11 +170,18 @@ const Profile = () => {
 					{({ values, setFieldValue }) => (
 						<Form>
 							<div className="mb-4 text-center">
-								<img
-									src={`https://minpro-blog.purwadhikabootcamp.com/${profileData.imgProfile}`}
-									alt={profileData.username}
-									className="h-28 w-28 border-2 border-blue-700 rounded-full object-cover mx-auto"
-								/>
+								{profileData?.imgProfile ? (
+									<img
+										className="mx-auto object-cover rounded-full"
+										src={`https://minpro-blog.purwadhikabootcamp.com/${profileData?.imgProfile}`}
+										alt="profile"
+									/>
+								) : (
+									<FontAwesomeIcon
+										icon={faUser}
+										className="text-blue-400 hover:text-blue-500 hover:cursor-pointer mt-4 border-4 border-blue-500 border-double rounded-full p-10"
+									/>
+								)}
 
 								<input
 									type="file"
