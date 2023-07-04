@@ -50,8 +50,8 @@ const LikeButton = ({ data }) => {
 
 			if (liked) {
 				await axios.delete(
-					`https://minpro-blog.purwadhikabootcamp.com/api/blog/unlike/$`,
-					{ BlogId: data.id },
+					`https://minpro-blog.purwadhikabootcamp.com/api/blog/unlike/${data.id}`,
+					// { BlogId: data.id },
 					{ headers }
 				);
 				setLiked(false);
