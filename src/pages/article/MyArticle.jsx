@@ -9,7 +9,7 @@ const MyArticle = () => {
 	const getMyBlog = async () => {
 		try {
 			const response = await axios.get(
-				"https://minpro-blog.purwadhikabootcamp.com/api/blog/pagUser",
+				"https://minpro-blog.purwadhikabootcamp.com/api/blog/auth",
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

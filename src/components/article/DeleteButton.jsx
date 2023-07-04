@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const DeleteButton = ({ blogId }) => {
-	// const { blogId } = useParams();
 	const removeBlog = async () => {
 		try {
 			const token = localStorage.getItem("token");
