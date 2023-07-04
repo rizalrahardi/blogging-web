@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
 	const handleSubmit = async (values, { setSubmitting }) => {
@@ -20,8 +21,10 @@ const ResetPassword = () => {
 				config
 			);
 			console.log(data);
-			alert(data.message);
-			window.location.href = "/login";
+			toast.success(data.message);
+			setTimeout(() => {
+				window.location.href = "/login";
+			}, 1500);
 		} catch (error) {
 			console.error(error);
 			alert(error.response.data.message);
