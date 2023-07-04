@@ -40,7 +40,6 @@ const RegistrationPage = () => {
 		phone: "",
 		password: "",
 		confirmPassword: "",
-		// FE_URL: "http://localhost:3000",
 	};
 
 	const toggleShowPassword = () => {
