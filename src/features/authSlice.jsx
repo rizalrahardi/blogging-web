@@ -73,6 +73,8 @@ export const {
 
 export const registerUser = (userData) => async (dispatch) => {
 	try {
+		userData.FE_URL = window.location.origin;
+		console.log(userData);
 		dispatch(registrationStart());
 		const res = await axios.post(
 			"https://minpro-blog.purwadhikabootcamp.com/api/auth/",
