@@ -28,7 +28,7 @@ export const FilterSort = ({ sortOrder, asc, desc }) => {
 					})}
 					onClick={desc}
 				>
-					Latest
+					Desc
 				</button>
 				<button
 					className={classNames("mr-2 px-4 py-2 rounded-md", {
@@ -37,7 +37,7 @@ export const FilterSort = ({ sortOrder, asc, desc }) => {
 					})}
 					onClick={asc}
 				>
-					Oldest
+					Asc
 				</button>
 			</div>
 		</>

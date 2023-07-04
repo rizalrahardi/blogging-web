@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LikeButton from "../article/LikeButton";
 const Popular = () => {
 	const [popular, setPopular] = useState([]);
 	const navigate = useNavigate();
 	const fetchPopular = async () => {
 		try {
 			const { data } = await axios.get(
-				"https://minpro-blog.purwadhikabootcamp.com/api/blog/pagFav?page=5&orderBy=total_fav&sort=DESC"
+				"https://minpro-blog.purwadhikabootcamp.com/api/blog/pagFav?page=1&orderBy=total_fav&sort=DESC"
 			);
 			setPopular(data.result);
 			console.log(data.result);
@@ -48,6 +49,7 @@ const Popular = () => {
 							Read More
 						</button>
 					</div>
+					<LikeButton data={blog} />
 				</div>
 			))}
 		</div>

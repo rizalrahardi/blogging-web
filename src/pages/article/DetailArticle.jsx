@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchBlogId } from "../../features/blogSlice";
 import LikeButton from "../../components/article/LikeButton";
+import Card from "../../components/article/Card";
 const DetailArticle = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -13,17 +14,8 @@ const DetailArticle = () => {
 	}, [dispatch, id]);
 	console.log(blog);
 	return (
-		<div className="flex flex-col min-h-screen justify-center items-center mx-auto w-full max-w-5xl">
-			<div className="shadow-md p-10 rounded-2xl">
-				<img
-					className="rounded-3xl mb-5 w-full"
-					src={`https://minpro-blog.purwadhikabootcamp.com/${blog.imageURL}`}
-					alt="article"
-				/>
-				<h2 className="text-3xl font-semibold mb-5">{blog.title}</h2>
-				<p>{blog.content}</p>
-				<LikeButton data={blog} />
-			</div>
+		<div className="flex flex-col min-h-screen justify-center items-center mx-auto w-full max-w-xl">
+			<Card data={blog} />
 		</div>
 	);
 };

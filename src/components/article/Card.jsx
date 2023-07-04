@@ -18,10 +18,10 @@ const Card = ({ data }) => {
 	};
 
 	const isMyArticlePage = location.pathname === "/my-article";
-
+	const isHome = location.pathname === "/";
 	return (
 		<>
-			<div className="rounded-lg p-4 shadow-md hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out bg-white m-2">
+			<div className="rounded-lg p-4 max-w-full shadow-md hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out bg-white m-2">
 				<div className="relative truncate">
 					<img
 						className="object-cover object-center w-full h-96 rounded-lg lg:h-70"
@@ -61,12 +61,14 @@ const Card = ({ data }) => {
 				<p className="text-sm text-gray-500 dark:text-gray-400 truncate">
 					{data.content}
 				</p>
-				<button
-					onClick={() => handleClick(data.id)}
-					className="text-blue-500 hover:underline"
-				>
-					Read More
-				</button>
+				{isHome && (
+					<button
+						onClick={() => handleClick(data.id)}
+						className="text-blue-500 hover:underline"
+					>
+						Read More
+					</button>
+				)}
 				<div className="flex justify-between items-center">
 					<LikeButton data={data} />
 					{isMyArticlePage && (
@@ -95,9 +97,7 @@ const Card = ({ data }) => {
 											Are you sure you want to delete this blog?
 										</h3>
 										<div className="flex justify-center gap-4">
-											<DeleteButton
-												blogId={data.id}
-											>
+											<DeleteButton blogId={data.id}>
 												Yes, I'm sure
 											</DeleteButton>
 											<Button

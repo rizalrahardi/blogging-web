@@ -23,7 +23,7 @@ const BlogList = () => {
 	const fetchBlogs = (currentPage, sortOrder, selectedCategoryId) => {
 		return async (dispatch) => {
 			try {
-				let url = `https://minpro-blog.purwadhikabootcamp.com/api/blog?page=${currentPage}&sort=${sortOrder}&size=10`;
+				let url = `https://minpro-blog.purwadhikabootcamp.com/api/blog/pagFav?page=${currentPage}&orderBy=total_fav&sort=${sortOrder}&size=10`;
 				if (selectedCategoryId) {
 					url += `&id_cat=${selectedCategoryId}`;
 				}

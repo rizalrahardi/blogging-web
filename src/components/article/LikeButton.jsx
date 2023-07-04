@@ -81,6 +81,7 @@ const LikeButton = ({ data }) => {
 				>
 					<FontAwesomeIcon icon={faThumbsUp} size="2x" />
 					<span>{liked ? "Liked" : "Like"}</span>
+					<p>{data.total_fav}</p>
 				</button>
 			)}
 		</div>
