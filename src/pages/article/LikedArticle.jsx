@@ -16,6 +16,7 @@ const LikedArticle = () => {
 					{ headers }
 				);
 
+				console.log(response.data.result);
 				setLikedArticles(response.data.result.map((item) => item.Blog));
 			} catch (error) {
 				console.error("Error fetching liked articles", error);

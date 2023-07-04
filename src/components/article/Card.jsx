@@ -14,7 +14,7 @@ const Card = ({ data }) => {
 
 	const handleClick = (id) => {
 		navigate(`blog/${id}`);
-		window.location.reload();
+		// window.location.reload();
 	};
 
 	const isMyArticlePage = location.pathname === "/my-article";
